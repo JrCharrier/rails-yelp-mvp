@@ -1,0 +1,34 @@
+<%# <%= render "navbar" %>
+
+<div class="container my-5">
+  <!-- Restaurant Information Section -->
+  <div class="card shadow-sm p-4 mb-4">
+    <h2 class="card-title">
+      <%= @restaurant.name %> - <span class="text-muted"><%= @restaurant.category.capitalize %></span>
+    </h2>
+    <h4 class="card-subtitle mb-2 text-muted"><%= @restaurant.address %></h4>
+    <p class="card-text">
+      📞 <%= @restaurant.phone_number %>
+    </p>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="card shadow-sm p-4">
+    <h3 class="mb-4"><strong>Reviews</strong></h3>
+    <ul class="list-group">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span><%= review.content %></span>
+          <span class="badge bg-primary rounded-pill"><%= review.rating %>/5 ⭐</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- Actions Section -->
+  <div class="mt-4">
+    <%= link_to "Add Review", new_restaurant_review_path(@restaurant), class: "btn btn-success" %>
+    <%= link_to "Edit", edit_restaurant_path(@restaurant), class: "btn btn-warning me-2" %>
+    <%= link_to "Back", restaurants_path, class: "btn btn-secondary me-2" %>
+  </div>
+</div>
